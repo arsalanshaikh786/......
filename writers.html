@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Handwriting Writers – AVCOE Study Hub</title>
+<meta name="theme-color" content="#6c8cff"><link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b18;--c:#111936;--c2:#18214a;--b:#27315f;--t:#eaf0ff;--m:#8d9bc8;--p:#6c8cff;--p2:#a56bff}
+[data-t=light]{--bg:#f3f5fc;--c:#fff;--c2:#eef1ff;--b:#dfe4f5;--t:#12183a;--m:#5c6694}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+body:before,body:after{content:"";position:fixed;width:46vmax;height:46vmax;border-radius:50%;filter:blur(90px);opacity:.25;z-index:-1}
+body:before{background:var(--p);top:-20vmax;left:-14vmax}body:after{background:var(--p2);bottom:-22vmax;right:-14vmax}
+input{width:100%;padding:12px 14px;margin:6px 0;border-radius:12px;border:1px solid var(--b);background:var(--c2);color:var(--t);font-family:inherit;font-size:15px;outline:0}
+input:focus{border-color:var(--p)}
+.wrap{max-width:960px;margin:auto;padding:16px}
+.card{background:color-mix(in srgb,var(--c) 85%,transparent);border:1px solid var(--b);border-radius:18px;padding:18px;margin:12px 0}
+h2{font-size:18px;margin-bottom:6px}.sub{color:var(--m);font-size:13px}.sec{margin:20px 0 8px;font-size:16px}
+button{padding:10px 15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}
+button:active{transform:scale(.95)}button:disabled{opacity:.4}button.g{background:#25d366;color:#04210f}button.r{background:#e5484d}button.s{background:var(--c2);color:var(--t);border:1px solid var(--b)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.hide{display:none!important}
+.top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:color-mix(in srgb,var(--bg) 75%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--b)}
+.brand{display:flex;gap:10px;align-items:center}.brand b{display:block}.brand small{color:var(--m);font-size:12px}
+.logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--p),var(--p2));font-size:21px}
+.tabs{display:flex;gap:8px;margin:6px 0 12px;overflow:auto}.tabs button{background:var(--c2);color:var(--t);border:1px solid var(--b);white-space:nowrap}.tabs button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:10px}
+.item{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:10px;cursor:pointer;transition:.2s}.item:hover{transform:translateY(-4px);border-color:var(--p)}
+.th{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:8px;background:var(--c2);-webkit-user-drag:none}
+.nm{font-weight:600}.pr{font-weight:800;font-size:18px;color:var(--p)}.pr small{font-size:12px;color:var(--m);font-weight:400}.item>small{color:var(--m);font-size:12px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}.gal img{width:100%;border-radius:10px;cursor:zoom-in;-webkit-user-drag:none}
+.sm{position:relative}.sm img{width:100%;border-radius:10px}.sm .x{position:absolute;top:4px;right:4px;padding:2px 8px}
+.code{font:800 20px monospace;background:var(--c2);padding:12px;border-radius:12px;text-align:center;margin:10px 0;color:#7fe0a0;border:1px dashed var(--b)}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:12px}.modal .card{width:100%;max-width:520px;max-height:90vh;overflow:auto;margin:0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:var(--t);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;transition:.3s;z-index:200;pointer-events:none}.toast.on{opacity:1;transform:translate(-50%,0)}
+.credit{text-align:center;margin:24px 0 6px;font-size:12px}.credit b{color:var(--p)}
+@media(max-width:640px){.wrap{padding:12px}input{font-size:16px}.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body oncontextmenu="return false">
+
+<div id="gate" class="wrap"><div class="card" style="text-align:center;margin-top:20vh">⏳ Loading…</div></div>
+
+<div id="app" class="hide">
+  <header class="top"><div class="brand"><div class="logo">✍️</div><div><b>Handwriting Writers</b><small>Hire a writer for your assignments</small></div></div>
+    <button class="s" onclick="location.href='index.html'">🏠 Study Hub</button></header>
+  <div class="wrap">
+    <div class="tabs"><button id="t1" class="on" onclick="tab(1)">🔍 Find Writers</button><button id="t2" onclick="tab(2)">📦 My Orders</button><button id="t3" onclick="tab(3)">✍️ Writer Dashboard</button></div>
+    <div id="p1"><input id="sq" placeholder="🔍 Search writers…" oninput="renderW()">
+      <div class="row"><span class="sub">Sort by price:</span><button class="s" onclick="srt(1)">Low → High</button><button class="s" onclick="srt(-1)">High → Low</button></div>
+      <div class="grid" id="wg"></div><p class="sub" id="we" style="margin-top:12px"></p></div>
+    <div id="p2" class="hide"><div id="ol"></div></div>
+    <div id="p3" class="hide"><div id="wd"></div></div>
+    <p class="sub credit">Developed by <b>Arsalan Shaikh</b> • AIDS 1st Year</p>
+  </div>
+</div>
+<div id="md" class="modal hide" onclick="if(event.target===this)cm()"><div class="card" id="mc"></div></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, addDoc, collection, getDocs, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = { apiKey: "AIzaSyBcXm5QQaYCCddVXNgGqTBAszdKEK-0PJQ", authDomain: "multi-service-app-77dd8.firebaseapp.com", projectId: "multi-service-app-77dd8", storageBucket: "multi-service-app-77dd8.appspot.com", messagingSenderId: "123732555482", appId: "1:123732555482:web:ea47c825e0dbb504f597e3" };
+const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
+const CLOUD = "dbirgrdbp", PRESET = "ml_default";   // Cloudinary (same as admin)
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toast = m => { const t = $("toast"); t.textContent = m; t.classList.add("on"); clearTimeout(window._t); window._t = setTimeout(() => t.classList.remove("on"), 2400); };
+const th = u => String(u).replace("/upload/", "/upload/w_500,q_auto/");
+const byT = (a,b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0);
+const ST = { requested:"⏳ Requested", accepted:"✅ Accepted", completed:"🎉 Completed", rejected:"❌ Rejected", cancelled:"🚫 Cancelled" };
+const wa = (p, t) => window.open(`https://wa.me/${String(p).length === 10 ? "91" + p : p}?text=${encodeURIComponent(t)}`, "_blank");
+const om = h => { $("mc").innerHTML = h; $("md").classList.remove("hide"); };
+window.cm = () => $("md").classList.add("hide");
+let u = null, uname = "", myW = null, W = [], dir = 1, ms = [], OM = {};
+
+onAuthStateChanged(auth, async x => {
+  if (!x) { location.href = "index.html"; return; }
+  u = x;
+  try { uname = (await getDoc(doc(db,"users",x.uid))).data()?.name || x.email.split("@")[0]; } catch(e){ uname = x.email.split("@")[0]; }
+  $("gate").classList.add("hide"); $("app").classList.remove("hide"); tab(1);
+});
+document.documentElement.dataset.t = localStorage.th || "";
+
+window.tab = n => {
+  [1,2,3].forEach(i => { $("p"+i).classList.toggle("hide", i !== n); $("t"+i).classList.toggle("on", i === n); });
+  if (n === 1) loadWriters(); if (n === 2) loadOrders(); if (n === 3) loadDash();
+};
+async function up(f){
+  const fd = new FormData(); fd.append("file", f); fd.append("upload_preset", PRESET);
+  const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD}/image/upload`, { method:"POST", body:fd }), d = await r.json();
+  if (!d.secure_url) throw new Error(d.error?.message || "Upload failed"); return d.secure_url;
+}
+
+// ---------- Browse writers ----------
+async function loadWriters(){
+  try { W = (await getDocs(query(collection(db,"writers"), where("status","==","approved")))).docs.map(d => ({id:d.id, ...d.data()})); } catch(e){ W = []; }
+  renderW();
+}
+window.srt = d => { dir = d; renderW(); };
+window.renderW = () => {
+  const q = $("sq").value.toLowerCase();
+  const l = W.filter(w => (w.name || "").toLowerCase().includes(q)).sort((a,b) => (a.pricePerPage - b.pricePerPage) * dir);
+  $("wg").innerHTML = l.map(w => `<div class="item" onclick="openW('${w.id}')"><img class="th" src="${esc(th(w.samples?.[0] || ""))}" draggable="false"><div class="nm">${esc(w.name)}</div><div class="pr">₹${w.pricePerPage}<small> /page</small></div><small>${w.available === false ? "🔴 Busy" : "🟢 Available"} • ${w.samples?.length || 0} samples</small></div>`).join("");
+  $("we").textContent = l.length ? "" : "No writers found yet. Want to earn? Open the Writer Dashboard and create your profile!";
+};
+window.openW = id => {
+  const w = W.find(x => x.id === id); if (!w) return;
+  om(`<div class="row" style="justify-content:space-between"><h2 style="margin:0">${esc(w.name)}</h2><button class="s" onclick="cm()">✕</button></div>
+  <p class="sub" style="margin-top:6px">${esc(w.bio || "")}</p>
+  <p style="margin:8px 0"><b>₹${w.pricePerPage}</b> per page • ${w.available === false ? "🔴 Busy" : "🟢 Available"}</p>
+  <b>Handwriting samples</b>
+  <div class="gal">${(w.samples || []).map(s => `<img src="${esc(th(s))}" onclick="zoomImg('${esc(s)}')" draggable="false">`).join("")}</div>
+  <h3 class="sec">📝 Place an order</h3>
+  <input id="ot" placeholder="Subject / assignment title"><input id="op" type="number" min="1" max="500" placeholder="Number of pages" oninput="tot(${w.pricePerPage})">
+  <input id="od" type="date"><input id="ph" type="tel" placeholder="Your WhatsApp number (10 digits)"><input id="on" placeholder="Notes (ruled/plain, paper size, other details…)">
+  <div class="code" id="tt">Total: ₹0</div>
+  <button onclick="sendOrder('${w.id}')" ${w.available === false || w.id === u.uid ? "disabled" : ""}>Send Order Request</button>
+  <p class="sub" style="margin-top:8px">Payment is settled directly between you and the writer after they accept. Agree on advance/delivery on WhatsApp.</p>`);
+};
+window.zoomImg = s => om(`<div class="row" style="justify-content:flex-end"><button class="s" onclick="cm()">✕ Close</button></div><img src="${esc(s)}" style="width:100%;border-radius:12px;margin-top:8px" draggable="false">`);
+window.tot = r => { $("tt").textContent = "Total: ₹" + ((Math.floor(+$("op").value) || 0) * r); };
+window.sendOrder = async id => {
+  const w = W.find(x => x.id === id), t = $("ot").value.trim(), p = Math.floor(+$("op").value), ph = $("ph").value.replace(/\D/g, "");
+  if (!t) return toast("Enter the assignment title");
+  if (!(p >= 1 && p <= 500)) return toast("Enter pages (1–500)");
+  if (ph.length !== 10) return toast("Enter a 10-digit WhatsApp number");
+  try {
+    await addDoc(collection(db,"wOrders"), { writerId:id, writerName:w.name, clientId:u.uid, clientName:uname, clientEmail:u.email, clientPhone:ph, title:t, notes:$("on").value.trim(), deadline:$("od").value || "", pages:p, rate:w.pricePerPage, total:p * w.pricePerPage, status:"requested", createdAt:serverTimestamp() });
+    cm(); toast("Order request sent ✅"); tab(2);
+  } catch(e){ toast("Could not send the order"); }
+};
+
+// ---------- My orders (client) ----------
+async function loadOrders(){
+  try {
+    const l = (await getDocs(query(collection(db,"wOrders"), where("clientId","==",u.uid)))).docs.map(d => ({id:d.id, ...d.data()})).sort(byT);
+    l.forEach(o => OM[o.id] = o);
+    $("ol").innerHTML = l.length ? l.map(o => `<div class="card"><div class="row" style="justify-content:space-between"><b>${esc(o.title)}</b><span>${ST[o.status] || o.status}</span></div>
+      <p class="sub" style="margin-top:6px">✍️ ${esc(o.writerName)} • ${o.pages} pages × ₹${o.rate} = <b>₹${o.total}</b>${o.deadline ? " • 📅 " + esc(o.deadline) : ""}</p>
+      <div class="row" style="margin-top:10px">${o.status === "requested" ? `<button class="r" onclick="setO('${o.id}','cancelled')">Cancel request</button>` : ""}${o.status === "accepted" || o.status === "completed" ? `<button class="g" onclick="waW('${o.id}')">💬 WhatsApp writer</button>` : ""}</div></div>`).join("") : '<p class="sub">You have not placed any orders yet.</p>';
+  } catch(e){ $("ol").innerHTML = '<p class="sub">Could not load orders.</p>'; }
+}
+window.waW = async id => {
+  const o = OM[id], w = (await getDoc(doc(db,"writers",o.writerId))).data();
+  wa(w.whatsapp, `Hi ${w.name}, this is ${uname}. About my order "${o.title}" (${o.pages} pages, ₹${o.total}).`);
+};
+window.setO = async (id, s) => {
+  if (!confirm("Confirm: " + s + "?")) return;
+  try { await updateDoc(doc(db,"wOrders",id), { status:s }); toast("Updated ✅"); loadOrders(); if (myW) loadRecv(); } catch(e){ toast("Not allowed"); }
+};
+
+// ---------- Writer dashboard ----------
+async function loadDash(){
+  const s = await getDoc(doc(db,"writers",u.uid)); myW = s.exists() ? s.data() : null; ms = [...(myW?.samples || [])];
+  const stx = { approved:"✅ Approved — your profile is visible to students", pending:"⏳ Waiting for admin approval", blocked:"🚫 Blocked by admin" };
+  $("wd").innerHTML = (myW ? `<div class="card"><b>Status:</b> ${stx[myW.status] || myW.status}</div>` : `<div class="card"><h2>✍️ Become a Writer</h2><p class="sub">Create your profile, upload photos of your handwriting and set your price per page. Admin will approve it.</p></div>`) + `
+  <div class="card"><input id="wn" placeholder="Your name" value="${esc(myW?.name || uname)}"><input id="wb" placeholder="About you (style, speed, subjects…)" value="${esc(myW?.bio || "")}">
+  <input id="wr" type="number" min="1" placeholder="Price per page (₹)" value="${myW?.pricePerPage || ""}"><input id="ww" type="tel" placeholder="WhatsApp number (10 digits)" value="${esc(myW?.whatsapp || "")}">
+  <label class="sub" style="display:flex;gap:8px;align-items:center;margin:8px 0"><input type="checkbox" id="wav" style="width:auto;margin:0" ${myW?.available === false ? "" : "checked"}> I am available for new orders</label>
+  <b>Handwriting samples (max 6)</b><div class="gal" id="sg"></div>
+  <button class="s" onclick="document.getElementById('sf').click()">📷 Add photos</button><input type="file" id="sf" accept="image/*" multiple class="hide" onchange="addS(this.files)">
+  <div class="row" style="margin-top:12px"><button onclick="saveW()">💾 Save profile</button></div></div>` + (myW ? '<h3 class="sec">📥 Orders received</h3><div id="ro"></div>' : "");
+  drawS(); if (myW) loadRecv();
+}
+const drawS = () => { $("sg").innerHTML = ms.map((s,i) => `<div class="sm"><img src="${esc(th(s))}"><button class="x r" onclick="rmS(${i})">✕</button></div>`).join(""); };
+window.rmS = i => { ms.splice(i,1); drawS(); };
+window.addS = async fs => {
+  for (const f of fs) {
+    if (ms.length >= 6) { toast("Maximum 6 samples"); break; }
+    try { toast("Uploading…"); ms.push(await up(f)); drawS(); } catch(e){ toast("Upload failed: " + e.message); }
+  }
+  document.getElementById("sf").value = "";
+};
+window.saveW = async () => {
+  const n = $("wn").value.trim(), r = Math.floor(+$("wr").value), ph = $("ww").value.replace(/\D/g, "");
+  if (!n || !(r >= 1) || ph.length !== 10 || !ms.length) return toast("Fill name, price, 10-digit WhatsApp and add at least 1 sample");
+  const d = { name:n, bio:$("wb").value.trim(), pricePerPage:r, whatsapp:ph, available:$("wav").checked, samples:ms };
+  try {
+    if (myW) await updateDoc(doc(db,"writers",u.uid), d); else await setDoc(doc(db,"writers",u.uid), { ...d, status:"pending", uid:u.uid, createdAt:serverTimestamp() });
+    toast("Profile saved ✅"); loadDash();
+  } catch(e){ toast("Could not save the profile"); }
+};
+async function loadRecv(){
+  try {
+    const l = (await getDocs(query(collection(db,"wOrders"), where("writerId","==",u.uid)))).docs.map(d => ({id:d.id, ...d.data()})).sort(byT);
+    l.forEach(o => OM[o.id] = o);
+    $("ro").innerHTML = l.length ? l.map(o => `<div class="card"><div class="row" style="justify-content:space-between"><b>${esc(o.title)}</b><span>${ST[o.status] || o.status}</span></div>
+      <p class="sub" style="margin-top:6px">👤 ${esc(o.clientName)} • ${esc(o.clientEmail)}<br>${o.pages} pages × ₹${o.rate} = <b>₹${o.total}</b>${o.deadline ? " • 📅 " + esc(o.deadline) : ""}</p>${o.notes ? `<p class="sub">📝 ${esc(o.notes)}</p>` : ""}
+      <div class="row" style="margin-top:10px">${o.status === "requested" ? `<button class="g" onclick="setO('${o.id}','accepted')">✅ Accept</button><button class="r" onclick="setO('${o.id}','rejected')">❌ Reject</button>` : ""}${o.status === "accepted" ? `<button onclick="setO('${o.id}','completed')">🎉 Mark completed</button>` : ""}${o.status === "accepted" || o.status === "completed" ? `<button class="g" onclick="waC('${o.id}')">💬 WhatsApp client</button>` : ""}</div></div>`).join("") : '<p class="sub">No orders yet.</p>';
+  } catch(e){ $("ro").innerHTML = '<p class="sub">Could not load orders.</p>'; }
+}
+window.waC = id => { const o = OM[id]; wa(o.clientPhone, `Hi ${o.clientName}, I am ${o.writerName}. About your order "${o.title}" (${o.pages} pages, ₹${o.total}).`); };
+</script>
+</body>
+</html>
